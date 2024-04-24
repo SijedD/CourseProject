@@ -35,7 +35,7 @@ class ApiAuthController extends Controller
         ], 201);
     }
 
-    public function authorization(LoginUserRequest $request): JsonResponse
+    public function authorization(Request $request): JsonResponse
     {
         if (!Auth::attempt($request->only(['email', 'password']))) {
             throw new ApiException(401, 'Authorization failed');
