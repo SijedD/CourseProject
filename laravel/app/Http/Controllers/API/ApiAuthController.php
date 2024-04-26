@@ -23,7 +23,10 @@ class ApiAuthController extends Controller
 
         $user = User::create([
             'name' => $data['name'],
+            'surname' => $data['surname'],
+            'last_name' => $data['last_name'],
             'email' => $data['email'],
+            'number' => $data['number'],
             'password' => Hash::make($data['password'])
         ]);
 

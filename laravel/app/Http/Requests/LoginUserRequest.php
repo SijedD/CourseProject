@@ -37,7 +37,6 @@ class LoginUserRequest extends FormRequest
     public function messages()
     {
         return [
-            'success' => false,
             'email.required' => "Email field cannot be blank",
             'password.required' => 'Password field cannot be blank',
             'email.email' => 'Invalid email format'
