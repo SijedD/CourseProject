@@ -1,8 +1,7 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\API\Auth\ApiAuthController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\API\ApiAuthController;
 
 
 Route::post('/registration', [ApiAuthController::class, 'register']);
