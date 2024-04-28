@@ -6,5 +6,5 @@ use App\Http\Controllers\API\ApiAuthController;
 
 
 Route::post('/registration', [ApiAuthController::class, 'register']);
-Route::post('/authorization', [ApiAuthController::class, 'authorization']);
+Route::post('/authorization', [ApiAuthController::class, 'authorization'])->name('login');
 

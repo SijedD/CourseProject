@@ -17,9 +17,9 @@ class ApiAuthController extends Controller
 {
     use HasApiTokens;
 
-    public function register(Request $request): JsonResponse
+    public function register(RegisterUserRequest $request): JsonResponse
     {
-        $data = $request->json()->all();
+        $data = $request->all();
 
         $user = User::create([
             'name' => $data['name'],
@@ -38,7 +38,7 @@ class ApiAuthController extends Controller
         ], 201);
     }
 
-    public function authorization(Request $request): JsonResponse
+    public function authorization(LoginUserRequest $request): JsonResponse
     {
         if (!Auth::attempt($request->only(['email', 'password']))) {
             throw new ApiException(401, 'Authorization failed');
@@ -55,12 +55,4 @@ class ApiAuthController extends Controller
 
     }
 
-    public function logout(Request $request): JsonResponse
-    {
-        $request->user()->tokens->each(function ($token) {
-            $token->delete();
-        });
-
-        return response()->json([], 204);
-    }
 }

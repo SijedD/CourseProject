@@ -9,12 +9,12 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         User::create([
-            'name'=>'123',
-            'surname'=>"1234",
-            'last_name'=>"12345",
-            'email'=>"asdads@gmail.com",
+            'name'=>'admin',
+            'surname'=>"admin",
+            'last_name'=>"admin",
+            'email'=>"admin@gmail.com",
             'number'=>"1234",
-            'password'=>"1234",
+            'password'=>"admin",
             'role'=>"1"
         ]);
         Role::create([
