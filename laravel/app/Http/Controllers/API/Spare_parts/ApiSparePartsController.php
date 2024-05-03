@@ -1,28 +1,25 @@
 <?php
 
-namespace App\Http\Controllers\API\Cars;
+namespace App\Http\Controllers\API\Spare_parts;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreCarsRequest;
-use App\Http\Requests\UpdateCarsRequest;
-use App\Models\Car;
+use App\Http\Requests\StoreSparePartsRequest;
+use App\Http\Requests\UpdateSparePartsRequest;
+use App\Models\Spare_part;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 
-class ApiCarsController extends Controller
+class ApiSparePartsController extends Controller
 {
-
-    public function store(StoreCarsRequest $request): JsonResponse
+    public function store(StoreSparePartsRequest $request): JsonResponse
     {
         $data = $request->all();
         $image = $request->file('image');
         $path = $image->store('images', 'public');
-        $cars = Car::create([
+        $spare_part = Spare_part::create([
             'name' => $data['name'],
             'description' => $data['description'],
-            'engine_capacity' => $data['engine_capacity'],
-            'horsepower' => $data['horsepower'],
-            'transmission' => $data['transmission'],
+            'price' => $data['price'],
+            'catigories_id' => $data['catigories_id'],
             'image' => $path
         ]);
 
@@ -30,18 +27,17 @@ class ApiCarsController extends Controller
             'success' => true,
             'code' => 201,
             'massage' => 'Success',
-            'car' => $cars
+            'spare_part' => $spare_part
         ], 201);
     }
 
-    public function update(UpdateCarsRequest $request,Car $car):JsonResponse
+    public function update(UpdateSparePartsRequest $request,Spare_part $spare_part):JsonResponse
     {
-
         $data = $request->all();
         $image = $request->file('image');
         if ($image) {
-            if ($car->image) {
-                Storage::disk('public')->delete($car->image);
+            if ($spare_part->image) {
+                Storage::disk('public')->delete($spare_part->image);
             }
 
             $path = $image->store('images', 'public');
@@ -50,7 +46,7 @@ class ApiCarsController extends Controller
 
         }
 
-        $car->update([
+        $spare_part->update([
             ...$data
         ]);
 
@@ -58,13 +54,13 @@ class ApiCarsController extends Controller
             'success' => true,
             'code' => 200,
             'massage' => 'Success',
-            'car' => $car
+            'spare_part' => $spare_part
         ]);
     }
 
-    public function destroy(Car $car):JsonResponse
+    public function destroy(Spare_part $spare_part):JsonResponse
     {
-        $car->delete();
+        $spare_part->delete();
 
         return response()->json([
             'success' => true,
@@ -76,13 +72,12 @@ class ApiCarsController extends Controller
     public function index()
     {
 
-        return Car::paginate(10);
+        return Spare_part::paginate(10);
 
     }
 
-    public function show(Car $car)
+    public function show(Spare_part $spare_part)
     {
-        return $car;
+        return $spare_part;
     }
-
 }
