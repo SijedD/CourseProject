@@ -7,10 +7,15 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginUserRequest;
 use App\Http\Requests\RegisterUserRequest;
 use App\Models\User;
+use App\Notifications\VerifyEmailQueued;
+use Illuminate\Auth\Events\Verified;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\URL;
 
 class ApiAuthController extends Controller
 {
@@ -28,6 +33,9 @@ class ApiAuthController extends Controller
             'number' => $data['number'],
             'password' => Hash::make($data['password'])
         ]);
+
+        $signedRoute = URL::temporarySignedRoute('verification.verify', now()->addDay(), ['id' => $user->id, 'hash' => sha1($user->getEmailForVerification()), 'user' => $user]);
+        $user->notify(new VerifyEmailQueued($signedRoute));
 
         return response()->json([
             'success' => true,
@@ -52,6 +60,13 @@ class ApiAuthController extends Controller
             'token' => $user->createToken('authToken')->plainTextToken
         ], 200);
 
+    }
+
+    public function verify(Request $request, User $user): JsonResponse
+    {
+        $user->markEmailAsVerified();
+
+        return response()->json(['message' => 'Email verified successfully.'], 200);
     }
 
 }
