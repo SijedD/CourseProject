@@ -7,6 +7,7 @@ use App\Http\Requests\UpdateSparePartsRequest;
 use App\Models\Spare_part;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\Request;
 
 class ApiSparePartsController extends Controller
 {
@@ -69,10 +70,12 @@ class ApiSparePartsController extends Controller
         ]);
     }
 
-    public function index()
+    public function index(Request $request)
     {
 
-        return Spare_part::paginate(10);
+        return Spare_part::filter($request->all())
+            ->orderBy('catigories_id','desc')
+            ->paginate(10);
 
     }
 
