@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\Auth\ApiAuthController;
+use App\Http\Controllers\API\News\ApiNewsController;
 use App\Http\Controllers\API\Spare_parts\ApiSparePartsController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\Cars\ApiCarsController;
@@ -15,3 +16,4 @@ Route::get('/email/verify/{user}/{hash}', [ApiAuthController::class, 'verify'])
     ->name('verification.verify');
 
 Route::resource('/spare_part',ApiSparePartsController::class);
+Route::resource('/news',ApiNewsController::class);
