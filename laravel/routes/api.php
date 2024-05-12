@@ -3,6 +3,7 @@
 use App\Http\Controllers\API\Auth\ApiAuthController;
 use App\Http\Controllers\API\News\ApiNewsController;
 use App\Http\Controllers\API\Requests\ApiRequestsController;
+use App\Http\Controllers\API\Service\ApiServiceController;
 use App\Http\Controllers\API\Spare_parts\ApiSparePartsController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\Cars\ApiCarsController;
@@ -18,6 +19,7 @@ Route::get('/email/verify/{user}/{hash}', [ApiAuthController::class, 'verify'])
 
 Route::resource('/spare_part',ApiSparePartsController::class);
 Route::resource('/news',ApiNewsController::class);
+Route::resource('/service',ApiServiceController::class);
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::patch('request/{requests}',[ApiRequestsController::class, 'update']);
