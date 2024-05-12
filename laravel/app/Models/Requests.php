@@ -19,4 +19,9 @@ class Requests extends Model
         "status_id",
     ];
 
+    public function services()
+    {
+        return $this->belongsToMany(Service::class, 'service_in_request', 'request_id', 'service_id');
+    }
+
 }

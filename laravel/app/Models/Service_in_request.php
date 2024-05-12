@@ -5,16 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-
-class Service extends Model
+class Service_in_request extends Model
 {
     use HasFactory;
     protected $fillable = [
-        "name",
-        "description",
-        "price"
+        "service_id",
+        "request_id"
     ];
     public $timestamps = false;
 
-    protected $table = "service";
+    protected $table = 'service_in_request';
 }

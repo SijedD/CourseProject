@@ -5,6 +5,8 @@ namespace App\Http\Controllers\API\Requests;
 use App\Http\Requests\StoreRequestsRequest;
 use App\Http\Requests\UpdateRequestsRequest;
 use App\Models\Requests;
+use App\Models\Service_in_request;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\JsonResponse;
 
 class ApiRequestsController
@@ -20,11 +22,22 @@ class ApiRequestsController
             "status_id"=>$data['status_id'],
         ]);
 
+        $servicesInRequest = [];
+
+        foreach ($data['service_id'] as $serviceId) {
+            $serviceInRequest = Service_in_request::create([
+                "request_id" => $requests->id,
+                "service_id" => $serviceId
+            ]);
+            $servicesInRequest[] = $serviceInRequest;
+        }
+
         return response()->json([
             'success' => true,
             'code' => 201,
             'massage' => 'Success',
-            'request' => $requests
+            'request' => $requests,
+            'serviceInRequest'=>$servicesInRequest
         ], 201);
     }
 
@@ -65,7 +78,7 @@ class ApiRequestsController
     public function index()
     {
 
-        return Requests::paginate(10);
+        return Requests::with('services')->paginate(10);
 
     }
 

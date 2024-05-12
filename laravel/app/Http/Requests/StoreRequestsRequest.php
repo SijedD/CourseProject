@@ -17,6 +17,7 @@ class StoreRequestsRequest extends FormRequest
         return [
             "car_id"=>'required',
             "description"=>'filled',
+            "service_id"=>'required'
         ];
     }
 }
