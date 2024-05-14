@@ -6,7 +6,6 @@ use App\Http\Requests\StoreRequestsRequest;
 use App\Http\Requests\UpdateRequestsRequest;
 use App\Models\Requests;
 use App\Models\ServiceInRequest;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\JsonResponse;
 
 class ApiRequestsController

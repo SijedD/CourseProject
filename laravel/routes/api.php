@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\Auth\ApiAuthController;
+use App\Http\Controllers\API\Buy_car_request\ApiByCarRequestController;
 use App\Http\Controllers\API\Car_in_stock\ApiCarInStockController;
 use App\Http\Controllers\API\News\ApiNewsController;
 use App\Http\Controllers\API\Requests\ApiRequestsController;
@@ -29,5 +30,10 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::resource('/request', ApiRequestsController::class)->except('update','destroy','show');
 
     Route::resource('/car_in_stock',ApiCarInStockController::class);
+
+    Route::patch('buy_car/{buyCarRequest}',[ApiByCarRequestController::class, 'update']);
+    Route::delete('buy_car/{buyCarRequest}',[ApiByCarRequestController::class, 'destroy']);
+    Route::get('buy_car/{buyCarRequest}',[ApiByCarRequestController::class, 'show']);
+    Route::resource('/buy_car', ApiByCarRequestController::class)->except('update','destroy','show');
 });
 

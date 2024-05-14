@@ -11,7 +11,6 @@ class Requests extends Model
 {
     use HasFactory;
     protected $fillable = [
-        "id",
         "user_id",
         "car_id",
         "description",
