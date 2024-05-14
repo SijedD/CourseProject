@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\Auth\ApiAuthController;
+use App\Http\Controllers\API\Car_in_stock\ApiCarInStockController;
 use App\Http\Controllers\API\News\ApiNewsController;
 use App\Http\Controllers\API\Requests\ApiRequestsController;
 use App\Http\Controllers\API\Service\ApiServiceController;
@@ -26,4 +27,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::delete('request/{requests}',[ApiRequestsController::class, 'destroy']);
     Route::get('request/{requests}',[ApiRequestsController::class, 'show']);
     Route::resource('/request', ApiRequestsController::class)->except('update','destroy','show');
+
+    Route::resource('/car_in_stock',ApiCarInStockController::class);
 });
+
