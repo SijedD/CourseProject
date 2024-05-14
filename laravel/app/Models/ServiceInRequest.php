@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Service_in_request extends Model
+class ServiceInRequest extends Model
 {
     use HasFactory;
     protected $fillable = [

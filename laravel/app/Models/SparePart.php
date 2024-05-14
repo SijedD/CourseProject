@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 
-class Spare_part extends Model
+class SparePart extends Model
 {
     use HasFactory, Filterable;
 

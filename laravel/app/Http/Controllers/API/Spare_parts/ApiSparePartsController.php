@@ -4,7 +4,7 @@ namespace App\Http\Controllers\API\Spare_parts;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreSparePartsRequest;
 use App\Http\Requests\UpdateSparePartsRequest;
-use App\Models\Spare_part;
+use App\Models\SparePart;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
@@ -16,7 +16,7 @@ class ApiSparePartsController extends Controller
         $data = $request->all();
         $image = $request->file('image');
         $path = $image->store('images', 'public');
-        $spare_part = Spare_part::create([
+        $spare_part = SparePart::create([
             'name' => $data['name'],
             'description' => $data['description'],
             'price' => $data['price'],
@@ -32,7 +32,7 @@ class ApiSparePartsController extends Controller
         ], 201);
     }
 
-    public function update(UpdateSparePartsRequest $request,Spare_part $spare_part):JsonResponse
+    public function update(UpdateSparePartsRequest $request,SparePart $spare_part):JsonResponse
     {
         $data = $request->all();
         $image = $request->file('image');
@@ -59,7 +59,7 @@ class ApiSparePartsController extends Controller
         ]);
     }
 
-    public function destroy(Spare_part $spare_part):JsonResponse
+    public function destroy(SparePart $spare_part):JsonResponse
     {
         $spare_part->delete();
 
@@ -73,13 +73,13 @@ class ApiSparePartsController extends Controller
     public function index(Request $request)
     {
 
-        return Spare_part::filter($request->all())
+        return SparePart::filter($request->all())
             ->orderBy('catigories_id','desc')
             ->paginate(10);
 
     }
 
-    public function show(Spare_part $spare_part)
+    public function show(SparePart $spare_part)
     {
         return $spare_part;
     }
