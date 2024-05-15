@@ -7,12 +7,19 @@ use App\Http\Controllers\API\News\ApiNewsController;
 use App\Http\Controllers\API\Requests\ApiRequestsController;
 use App\Http\Controllers\API\Service\ApiServiceController;
 use App\Http\Controllers\API\Spare_parts\ApiSparePartsController;
+use App\Http\Controllers\API\User\UserResetPasswordController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\Cars\ApiCarsController;
 
 
 Route::post('/registration', [ApiAuthController::class, 'register']);
 Route::post('/authorization', [ApiAuthController::class, 'authorization'])->name('login');
+
+Route::post('/reset_password', [UserResetPasswordController::class, 'sendEmail']);
+Route::get('/reset_password', [UserResetPasswordController::class, 'resetPassword'])
+    ->middleware('signed')
+    ->name('reset_password');
+
 Route::resource('/cars',ApiCarsController::class);
 
 Route::get('/email/verify/{user}/{hash}', [ApiAuthController::class, 'verify'])
