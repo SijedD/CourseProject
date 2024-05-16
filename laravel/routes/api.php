@@ -5,6 +5,7 @@ use App\Http\Controllers\API\Buy_car_request\ApiByCarRequestController;
 use App\Http\Controllers\API\Car_in_stock\ApiCarInStockController;
 use App\Http\Controllers\API\Cart\ApiCartController;
 use App\Http\Controllers\API\News\ApiNewsController;
+use App\Http\Controllers\API\Orders\ApiOrderController;
 use App\Http\Controllers\API\Requests\ApiRequestsController;
 use App\Http\Controllers\API\Service\ApiServiceController;
 use App\Http\Controllers\API\Spare_parts\ApiSparePartsController;
@@ -48,6 +49,8 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('/cart',[ApiCartController::class,'showCarts']);
     Route::delete('/cart/{cart}',[ApiCartController::class,'deleteToCart']);
     Route::delete('/cart',[ApiCartController::class,'deleteToAllCart']);
+
+    Route::resource('/order',ApiOrderController::class);
 
 });
 
