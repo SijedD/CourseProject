@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('cars', function (Blueprint $table) {
             $table->id();
             $table->string('name',255);
-            $table->string('description',255);
+            $table->text('description');
+            $table->text('specifications');
             $table->integer('engine_capacity');
             $table->integer('horsepower');
             $table->string('transmission', 255);

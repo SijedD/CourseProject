@@ -11,11 +11,16 @@ class Car extends Model {
     protected $fillable =[
         'name',
         'description',
+        'specifications',
         'engine_capacity',
         'horsepower',
         'transmission',
         'image'
 
+    ];
+
+    protected $casts = [
+        'image' => 'array'
     ];
 
     public $timestamps = false;

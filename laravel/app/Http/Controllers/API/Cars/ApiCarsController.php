@@ -15,16 +15,26 @@ class ApiCarsController extends Controller
     public function store(StoreCarsRequest $request): JsonResponse
     {
         $data = $request->all();
-        $image = $request->file('image');
-        $path = $image->store('images', 'public');
+        $images = $request->file('image');
+
+        $imagePaths = [];
+
+        foreach ($images as $image) {
+            $path = $image->store('images', 'public');
+            $imagePaths[] = $path;
+        }
+
+
         $cars = Car::create([
             'name' => $data['name'],
             'description' => $data['description'],
+            'specifications'=> $data['specifications'],
             'engine_capacity' => $data['engine_capacity'],
             'horsepower' => $data['horsepower'],
             'transmission' => $data['transmission'],
-            'image' => $path
+            'image' => $imagePaths
         ]);
+
 
         return response()->json([
             'success' => true,
