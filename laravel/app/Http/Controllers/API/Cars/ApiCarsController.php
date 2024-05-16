@@ -5,15 +5,20 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreCarsRequest;
 use App\Http\Requests\UpdateCarsRequest;
 use App\Models\Car;
+use App\Models\User;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
+
 
 class ApiCarsController extends Controller
 {
-
+    use AuthorizesRequests;
     public function store(StoreCarsRequest $request): JsonResponse
     {
+        $this->authorize('Admin', User::class);
+
         $data = $request->all();
         $images = $request->file('image');
 

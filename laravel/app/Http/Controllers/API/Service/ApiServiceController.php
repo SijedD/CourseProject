@@ -5,14 +5,19 @@ namespace App\Http\Controllers\API\Service;
 use App\Http\Requests\StoreServiceRequest;
 use App\Http\Requests\UpdateServiceRequest;
 use App\Models\Service;
+use App\Models\User;
 use http\Env\Request;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\JsonResponse;
 
 
 class ApiServiceController
 {
+    use AuthorizesRequests;
     public function store(StoreServiceRequest $request): JsonResponse
     {
+        $this->authorize('Admin', User::class);
+
         $data = $request->all();
         $service = Service::create([
             "name"=>$data['name'],

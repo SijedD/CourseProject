@@ -5,14 +5,19 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreSparePartsRequest;
 use App\Http\Requests\UpdateSparePartsRequest;
 use App\Models\SparePart;
+use App\Models\User;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 
 class ApiSparePartsController extends Controller
 {
+    use AuthorizesRequests;
     public function store(StoreSparePartsRequest $request): JsonResponse
     {
+        $this->authorize('Admin', User::class);
+
         $data = $request->all();
         $image = $request->file('image');
         $path = $image->store('images', 'public');

@@ -5,14 +5,19 @@ namespace App\Http\Controllers\API\News;
 use App\Http\Requests\StoreNewsRequest;
 use App\Http\Requests\UpdateNewsRequest;
 use App\Models\News;
+use App\Models\User;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 
 class ApiNewsController
 {
+    use AuthorizesRequests;
     public function store(StoreNewsRequest $request): JsonResponse
     {
+        $this->authorize('Admin', User::class);
+
         $data = $request->all();
         $image = $request->file('image');
         $path = $image->store('images', 'public');

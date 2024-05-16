@@ -22,17 +22,22 @@ Route::get('/reset_password', [UserResetPasswordController::class, 'resetPasswor
     ->middleware('signed')
     ->name('reset_password');
 
-Route::resource('/cars',ApiCarsController::class);
+    Route::get('/email/verify/{user}/{hash}', [ApiAuthController::class, 'verify'])
+        ->middleware('signed')
+        ->name('verification.verify');
 
-Route::get('/email/verify/{user}/{hash}', [ApiAuthController::class, 'verify'])
-    ->middleware('signed')
-    ->name('verification.verify');
 
-Route::resource('/spare_part',ApiSparePartsController::class);
-Route::resource('/news',ApiNewsController::class);
-Route::resource('/service',ApiServiceController::class);
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
+
+    Route::resource('/cars',ApiCarsController::class);
+
+    Route::resource('/spare_part',ApiSparePartsController::class);
+
+    Route::resource('/news',ApiNewsController::class);
+
+    Route::resource('/service',ApiServiceController::class);
+
     Route::patch('request/{requests}',[ApiRequestsController::class, 'update']);
     Route::delete('request/{requests}',[ApiRequestsController::class, 'destroy']);
     Route::get('request/{requests}',[ApiRequestsController::class, 'show']);
