@@ -18,7 +18,7 @@ class UpdateSparePartsRequest extends FormRequest
             'name' => 'filled',
             'description'=>'filled',
             'price'=>'filled',
-            'catigories_id'=>'filled',
+            'category_id'=>'filled',
             'image'=>'filled'
         ];
     }

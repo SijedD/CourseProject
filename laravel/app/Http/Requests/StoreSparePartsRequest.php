@@ -20,7 +20,7 @@ class StoreSparePartsRequest extends FormRequest
             'description'=>'required',
             'price'=>'required',
             'image'=>'filled',
-            'catigories_id'=>'required'
+            'category_id'=>'required'
         ];
     }
 }

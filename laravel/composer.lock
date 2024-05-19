@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "229dfa9024eaf36ebf09816ab72bc482",
+    "content-hash": "ff85ffa7f6893870573c028485154944",
     "packages": [
         {
             "name": "brick/math",
@@ -5534,16 +5534,16 @@
         },
         {
             "name": "tucker-eric/eloquentfilter",
-            "version": "3.3.0",
+            "version": "3.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Tucker-Eric/EloquentFilter.git",
-                "reference": "acbfbe008b8c6b445708493b85a143f7f916c235"
+                "reference": "38c1dee5ce2a1fd13d47e7c5567ff4c2e517603e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Tucker-Eric/EloquentFilter/zipball/acbfbe008b8c6b445708493b85a143f7f916c235",
-                "reference": "acbfbe008b8c6b445708493b85a143f7f916c235",
+                "url": "https://api.github.com/repos/Tucker-Eric/EloquentFilter/zipball/38c1dee5ce2a1fd13d47e7c5567ff4c2e517603e",
+                "reference": "38c1dee5ce2a1fd13d47e7c5567ff4c2e517603e",
                 "shasum": ""
             },
             "require": {
@@ -5593,9 +5593,9 @@
             ],
             "support": {
                 "issues": "https://github.com/Tucker-Eric/EloquentFilter/issues",
-                "source": "https://github.com/Tucker-Eric/EloquentFilter/tree/3.3.0"
+                "source": "https://github.com/Tucker-Eric/EloquentFilter/tree/3.4.0"
             },
-            "time": "2024-02-08T18:03:52+00:00"
+            "time": "2024-05-07T20:28:58+00:00"
         },
         {
             "name": "vlucas/phpdotenv",

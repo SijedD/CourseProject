@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('spare_parts', function (Blueprint $table) {
-            $table->foreign('category_id')->references('id')->on('spare_parts_categories')->nullonDelete();
+            $table->foreign('categories_id')->references('id')->on('spare_parts_categories')->nullonDelete();
         });
     }
 

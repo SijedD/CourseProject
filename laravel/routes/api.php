@@ -18,6 +18,7 @@ use App\Http\Controllers\API\Cars\ApiCarsController;
 Route::post('/registration', [ApiAuthController::class, 'register']);
 Route::post('/authorization', [ApiAuthController::class, 'authorization'])->name('login');
 
+
 Route::post('/reset_password', [UserResetPasswordController::class, 'sendEmail']);
 Route::get('/reset_password', [UserResetPasswordController::class, 'resetPassword'])
     ->middleware('signed')

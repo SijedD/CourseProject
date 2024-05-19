@@ -4,8 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Prompts\Table;
 
-class Catigories_id extends Model
+class BuyCarRequestStatus extends Model
 {
     use HasFactory;
 
@@ -13,7 +14,7 @@ class Catigories_id extends Model
         'name'
     ];
 
-    public $timestamps = false;
+    protected $table = 'buy_car_request_status';
 
-    protected $table = 'spare_parts_categories';
+    public $timestamps = false;
 }

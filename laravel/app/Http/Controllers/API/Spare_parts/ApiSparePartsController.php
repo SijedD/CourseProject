@@ -83,7 +83,7 @@ class ApiSparePartsController extends Controller
     {
 
         return SparePart::filter($request->all())
-            ->orderBy('catigories_id','desc')
+            ->orderBy('categories_id','desc')
             ->paginate(10);
 
     }

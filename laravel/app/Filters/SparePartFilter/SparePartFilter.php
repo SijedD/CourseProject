@@ -6,16 +6,16 @@ use EloquentFilter\ModelFilter;
 
 class SparePartFilter extends ModelFilter
 {
-    public function catigories_id($catigories_id): SparePartFilter
+    public function SparePartsCatigories($categories_id): SparePartFilter
     {
-        return $this->where('catigories_id', 'LIKE', "%$catigories_id%");
+        return $this->where('categories_id', 'LIKE', "%$categories_id%");
     }
 
 
     public function catigories($term): SparePartFilter
     {
         return $this->where(function($query) use ($term) {
-            $query->Where('catigories_id', 'LIKE', "%$term%");
+            $query->Where('categories_id', 'LIKE', "%$term%");
         });
     }
 

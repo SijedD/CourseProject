@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Catigories_id extends Model
+class SparePartsCatigories extends Model
 {
     use HasFactory;
 
@@ -13,7 +13,7 @@ class Catigories_id extends Model
         'name'
     ];
 
-    public $timestamps = false;
-
     protected $table = 'spare_parts_categories';
+
+    public $timestamps = false;
 }
