@@ -52,6 +52,8 @@ class ApiCarsController extends Controller
     public function update(UpdateCarsRequest $request,Car $car):JsonResponse
     {
 
+        $this->authorize('Admin', User::class);
+
         $data = $request->all();
         $image = $request->file('image');
         if ($image) {
@@ -79,6 +81,8 @@ class ApiCarsController extends Controller
 
     public function destroy(Car $car):JsonResponse
     {
+        $this->authorize('Admin', User::class);
+
         $car->delete();
 
         return response()->json([

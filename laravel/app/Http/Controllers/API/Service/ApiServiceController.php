@@ -35,6 +35,8 @@ class ApiServiceController
 
     public function update(UpdateServiceRequest $request,Service $service): JsonResponse
     {
+        $this->authorize('Admin', User::class);
+
         $data = $request->all();
 
         $service->update([
@@ -51,6 +53,8 @@ class ApiServiceController
 
     public function destroy(Service $service): JsonResponse
     {
+        $this->authorize('Admin', User::class);
+
         $service->delete();
 
         return response()->json([

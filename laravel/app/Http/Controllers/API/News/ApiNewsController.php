@@ -38,6 +38,8 @@ class ApiNewsController
     public function update(UpdateNewsRequest $request,News $news):JsonResponse
     {
 
+        $this->authorize('Admin', User::class);
+
         $data = $request->all();
         $image = $request->file('image');
         if ($image) {
@@ -65,6 +67,8 @@ class ApiNewsController
 
     public function destroy(News $news):JsonResponse
     {
+        $this->authorize('Admin', User::class);
+
         $news->delete();
 
         return response()->json([

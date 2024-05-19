@@ -77,7 +77,7 @@ class ApiRequestsController
     public function index()
     {
 
-        return Requests::with('services')->paginate(10);
+        return Requests::where('user_id', auth()->user()->id)->with('services')->paginate(10);
 
     }
 

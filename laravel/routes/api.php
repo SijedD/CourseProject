@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\Admin\ApiAdminController;
 use App\Http\Controllers\API\Auth\ApiAuthController;
 use App\Http\Controllers\API\Buy_car_request\ApiByCarRequestController;
 use App\Http\Controllers\API\Car_in_stock\ApiCarInStockController;
@@ -43,6 +44,8 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('request/{requests}',[ApiRequestsController::class, 'show']);
     Route::resource('/request', ApiRequestsController::class)->except('update','destroy','show');
 
+    Route::get('admin/request',[ApiAdminController::class,'showRequest']);
+
     Route::resource('/car_in_stock',ApiCarInStockController::class);
 
     Route::patch('buy_car/{buyCarRequest}',[ApiByCarRequestController::class, 'update']);
@@ -50,12 +53,16 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('buy_car/{buyCarRequest}',[ApiByCarRequestController::class, 'show']);
     Route::resource('/buy_car', ApiByCarRequestController::class)->except('update','destroy','show');
 
+    Route::get('admin/buy_car',[ApiAdminController::class,'showCarRequest']);
+
     Route::post('/cart/{sparePart}', [ApiCartController::class, 'addToCart']);
     Route::get('/cart',[ApiCartController::class,'showCarts']);
     Route::delete('/cart/{cart}',[ApiCartController::class,'deleteToCart']);
     Route::delete('/cart',[ApiCartController::class,'deleteToAllCart']);
 
     Route::resource('/order',ApiOrderController::class);
+
+    Route::get('admin/order',[ApiAdminController::class,'showOrder']);
 
 });
 

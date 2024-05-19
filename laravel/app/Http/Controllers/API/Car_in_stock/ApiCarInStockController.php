@@ -5,12 +5,15 @@ namespace App\Http\Controllers\API\Car_in_stock;
 use App\Http\Requests\StoreCarInStockRequest;
 use App\Http\Requests\UpdateCarInStockRequest;
 use App\Models\CarInStock;
+use App\Models\User;
 use Illuminate\Http\JsonResponse;
 
 class ApiCarInStockController
 {
     public function store(StoreCarInStockRequest $request): JsonResponse
     {
+        $this->authorize('Admin', User::class);
+
         $data = $request->all();
         $cars = CarInStock::create([
             'car_id'=>$data['car_id'],
@@ -27,6 +30,8 @@ class ApiCarInStockController
 
     public function update(UpdateCarInStockRequest $request, CarInStock $carInStock): JsonResponse
     {
+        $this->authorize('Admin', User::class);
+
         $data = $request->all();
 
         $carInStock->update([
@@ -43,6 +48,8 @@ class ApiCarInStockController
 
     public function destroy(CarInStock $carInStock):JsonResponse
     {
+        $this->authorize('Admin', User::class);
+
         $carInStock->delete();
 
         return response()->json([

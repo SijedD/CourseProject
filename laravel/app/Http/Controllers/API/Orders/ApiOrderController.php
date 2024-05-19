@@ -71,7 +71,7 @@ class ApiOrderController
 
     public function index()
     {
-        return Order::paginate(10);
+        return Order::where('user_id', auth()->user()->id)->paginate(10);
     }
 
     public function show(Order $order)

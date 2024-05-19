@@ -39,6 +39,8 @@ class ApiSparePartsController extends Controller
 
     public function update(UpdateSparePartsRequest $request,SparePart $spare_part):JsonResponse
     {
+        $this->authorize('Admin', User::class);
+
         $data = $request->all();
         $image = $request->file('image');
         if ($image) {
@@ -66,6 +68,8 @@ class ApiSparePartsController extends Controller
 
     public function destroy(SparePart $spare_part):JsonResponse
     {
+        $this->authorize('Admin', User::class);
+
         $spare_part->delete();
 
         return response()->json([

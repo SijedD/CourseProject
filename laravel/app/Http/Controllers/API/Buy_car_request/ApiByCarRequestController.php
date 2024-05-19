@@ -64,7 +64,7 @@ class ApiByCarRequestController
     public function index()
     {
 
-        return BuyCarRequest::paginate(10);
+        return BuyCarRequest::where('user_id', auth()->user()->id)->paginate(10);
 
     }
 
