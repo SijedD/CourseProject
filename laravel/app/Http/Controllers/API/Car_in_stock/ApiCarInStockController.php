@@ -10,6 +10,7 @@ use Illuminate\Http\JsonResponse;
 
 class ApiCarInStockController
 {
+
     public function store(StoreCarInStockRequest $request): JsonResponse
     {
         $this->authorize('Admin', User::class);

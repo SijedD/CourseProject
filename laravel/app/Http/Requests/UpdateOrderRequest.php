@@ -15,7 +15,6 @@ class UpdateOrderRequest extends FormRequest
     public function rules(): array
     {
         return [
-
             'date'=>'filled',
             'status_id'=>'filled'
         ];

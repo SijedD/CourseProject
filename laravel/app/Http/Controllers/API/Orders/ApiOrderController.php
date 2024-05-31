@@ -1,15 +1,18 @@
 <?php
 
 namespace App\Http\Controllers\API\Orders;
+use App\Http\Requests\UpdateOrderRequest;
 use App\Models\Cart;
 use App\Models\Order;
 use App\Models\OrderItems;
+use App\Models\User;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class ApiOrderController
 {
-
+    use AuthorizesRequests;
     public function store(Request $request,Cart $cart): JsonResponse
     {
         $userId = auth()->user()->id;
@@ -66,6 +69,25 @@ class ApiOrderController
             'success' => true,
             'code' => 200,
             'message' => 'Success'
+        ]);
+    }
+
+    public function update(UpdateOrderRequest $request,Order $order):JsonResponse
+    {
+
+        $this->authorize('Admin', User::class);
+
+        $data = $request->all();
+
+        $order->update([
+            ...$data
+        ]);
+
+        return response()->json([
+            'success' => true,
+            'code' => 200,
+            'massage' => 'Success',
+            'order' => $order
         ]);
     }
 
