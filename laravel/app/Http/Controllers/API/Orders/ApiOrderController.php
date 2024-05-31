@@ -52,7 +52,7 @@ class ApiOrderController
 
     public function destroy(Order $order):JsonResponse
     {
-        if ($order->status_id = 2){
+        if ($order->status_id === 2){
             return response()->json([
                 'success' => false,
                 'code' => 422,
