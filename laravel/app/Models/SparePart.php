@@ -24,7 +24,7 @@ class SparePart extends Model
         'description',
         'price',
         'image',
-        'catigories_id'
+        'categories_id'
 
     ];
 

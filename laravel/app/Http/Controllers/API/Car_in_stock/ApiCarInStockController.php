@@ -6,11 +6,12 @@ use App\Http\Requests\StoreCarInStockRequest;
 use App\Http\Requests\UpdateCarInStockRequest;
 use App\Models\CarInStock;
 use App\Models\User;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\JsonResponse;
 
 class ApiCarInStockController
 {
-
+    use AuthorizesRequests;
     public function store(StoreCarInStockRequest $request): JsonResponse
     {
         $this->authorize('Admin', User::class);

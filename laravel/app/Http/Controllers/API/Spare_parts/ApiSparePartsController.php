@@ -25,7 +25,7 @@ class ApiSparePartsController extends Controller
             'name' => $data['name'],
             'description' => $data['description'],
             'price' => $data['price'],
-            'catigories_id' => $data['catigories_id'],
+            'categories_id' => $data['categories_id'],
             'image' => $path
         ]);
 
